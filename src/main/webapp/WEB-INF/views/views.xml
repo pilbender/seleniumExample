@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE tiles-definitions PUBLIC "-//Apache Software Foundation//DTD Tiles Configuration 2.1//EN" "http://tiles.apache.org/dtds/tiles-config_2_1.dtd">
+<tiles-definitions>
+
+	<definition name="defaultTemplate" template="/WEB-INF/views/layouts/default.jsp">
+		<put-attribute name="title" value="Dojo Examples"/>
+		<put-attribute name="header" value="/WEB-INF/views/header.jsp"/>
+		<put-attribute name="left-nav" value="/WEB-INF/views/left-nav.jsp" />
+		<put-attribute name="footer" value="/WEB-INF/views/footer.jsp"/>
+	</definition>
+
+	<definition name="home" extends="defaultTemplate">
+		<put-attribute name="body" value="/WEB-INF/views/home.jsp" />
+	</definition>
+
+	<definition name="tab-container" extends="defaultTemplate">
+		<put-attribute name="body" value="/WEB-INF/views/tab-container.jsp" />
+	</definition>
+
+	<!-- Commenting out this definition will cause the view resolver to fall through
+	directly to the JSP instead of this tiles definition. -->
+	<definition name="calculator" extends="defaultTemplate">
+		<put-attribute name="body" value="/WEB-INF/views/calculator.jsp" />
+	</definition>
+
+	<definition name="hello" extends="defaultTemplate">
+		<put-attribute name="body" value="/WEB-INF/views/hello.jsp" />
+	</definition>
+
+	<definition name="animations" extends="defaultTemplate">
+		<put-attribute name="body" value="/WEB-INF/views/animations.jsp" />
+	</definition>
+
+	<definition name="ajax" extends="defaultTemplate">
+		<put-attribute name="body" value="/WEB-INF/views/ajax.jsp" />
+	</definition>
+
+	<definition name="events" extends="defaultTemplate">
+		<put-attribute name="body" value="/WEB-INF/views/events.jsp" />
+	</definition>
+
+	<definition name="query" extends="defaultTemplate">
+		<put-attribute name="body" value="/WEB-INF/views/home.jsp" />
+	</definition>
+
+	<definition name="simpleModule" extends="defaultTemplate">
+		<put-attribute name="body" value="/WEB-INF/views/simpleModule.jsp" />
+	</definition>
+
+	<definition name="classes" extends="defaultTemplate">
+		<put-attribute name="body" value="/WEB-INF/views/classes.jsp" />
+	</definition>
+
+	<definition name="image-zoomer" extends="defaultTemplate">
+		<put-attribute name="body" value="/WEB-INF/views/image-zoomer.jsp" />
+	</definition>
+
+	<definition name="tables" extends="defaultTemplate">
+		<put-attribute name="body" value="/WEB-INF/views/tables.jsp" />
+	</definition>
+
+	<definition name="filtering-select" extends="defaultTemplate">
+		<put-attribute name="body" value="/WEB-INF/views/filtering-select.jsp" />
+	</definition>
+
+	<definition name="form-validation" extends="defaultTemplate">
+		<put-attribute name="body" value="/WEB-INF/views/form-validation.jsp" />
+	</definition>
+
+</tiles-definitions>
