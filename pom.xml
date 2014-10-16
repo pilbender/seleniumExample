@@ -11,6 +11,7 @@
         <spring.version>3.2.5.RELEASE</spring.version>
 		<org.slf4j-version>1.6.6</org.slf4j-version>
 		<tomcat.version>7.0.47</tomcat.version>
+		<selenium.version>2.43.1</selenium.version>
     </properties>
 
     <dependencies>
@@ -131,6 +132,24 @@
 			</exclusions>
 			<scope>runtime</scope>
 		</dependency>
+		<!-- Selenium Dependencies -->
+		<dependency>
+			<groupId>org.seleniumhq.selenium</groupId>
+			<artifactId>selenium-java</artifactId>
+			<version>${selenium.version}</version>
+			<scope>test</scope>
+		</dependency>
+		<dependency>
+			<groupId>org.seleniumhq.selenium</groupId>
+			<artifactId>selenium-server</artifactId>
+			<version>${selenium.version}</version>
+			<scope>test</scope>
+		</dependency>
+		<dependency>
+			<groupId>xml-apis</groupId>
+			<artifactId>xml-apis</artifactId>
+			<version>1.4.01</version>
+		</dependency>
     </dependencies>
 
     <build>
@@ -187,4 +206,74 @@
 			</plugin>
         </plugins>
     </build>
+	<profiles>
+		<profile>
+			<!-- Run selenium tests.  You can execute these from the command line with:
+			mvn -Pselenium -Dspring.profiles.active=local test
+			You can run one test with:
+			mvn -Pselenium -Dspring.profiles.active=local -Dit.test=LoginTest#testLogin test -->
+			<id>selenium</id>
+			<activation>
+				<activeByDefault>false</activeByDefault>
+			</activation>
+			<build>
+				<plugins>
+					<plugin>
+						<groupId>org.apache.maven.plugins</groupId>
+						<artifactId>maven-failsafe-plugin</artifactId>
+						<version>2.16</version>
+						<dependencies>
+							<dependency>
+								<groupId>org.apache.maven.surefire</groupId>
+								<artifactId>surefire-junit4</artifactId>
+								<version>2.16</version>
+							</dependency>
+						</dependencies>
+						<executions>
+							<execution>
+								<id>test</id>
+								<phase>test</phase>
+								<goals>
+									<goal>integration-test</goal>
+								</goals>
+								<configuration>
+									<!-- Includes would go here but for now we are using the default patterns of class names.
+									Listing them here for reference: "**/IT*.java" "**/*IT.java" "**/*ITCase.java"
+									-->
+									<!-- These next 3 lines are needed to keep WebDriver from dying during testing. -scott smith -->
+									<argLine>-Xmx512m -XX:MaxPermSize=256m -javaagent:"${settings.localRepository}/org/springframework/spring-instrument/${spring.version}/spring-instrument-${spring.version}.jar"</argLine>
+									<!--<forkMode>pertest</forkMode>-->
+									<reuseForks>true</reuseForks>
+									<useSystemClassLoader>true</useSystemClassLoader>
+									<systemPropertyVariables>
+										<!-- The other choice besides "grid" is "local".  This makes the selection in
+										 the selenium configuration as to what type of bean to wire in for WebDriver selenium tests. -->
+										<spring.profiles.active>grid</spring.profiles.active>
+										<spring.profiles.default>grid</spring.profiles.default>
+									</systemPropertyVariables>
+								</configuration>
+							</execution>
+						</executions>
+					</plugin>
+					<plugin>
+						<!-- This doesn't do anything except suppress all other JUnit tests because the surefire configuration is inherited in this profile -->
+						<groupId>org.apache.maven.plugins</groupId>
+						<artifactId>maven-surefire-plugin</artifactId>
+						<version>2.16</version>
+						<configuration>
+							<excludes>
+								<exclude>**</exclude>
+							</excludes>
+							<systemPropertyVariables>
+								<environment>${environment}</environment>
+								<host>local</host>
+							</systemPropertyVariables>
+							<argLine>-XX:MaxPermSize=256m -javaagent:"${settings.localRepository}/org/springframework/spring-instrument/${spring.version}/spring-instrument-${spring.version}.jar"
+							</argLine>
+						</configuration>
+					</plugin>
+				</plugins>
+			</build>
+		</profile>
+	</profiles>
 </project>
