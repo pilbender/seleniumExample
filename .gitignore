@@ -3,7 +3,7 @@
 
 # Intellij files
 /.idea
-dojoExample.iml
+seleniumExample.iml
 
 # Eclipse files
 /.classpath
