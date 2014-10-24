@@ -9,6 +9,7 @@ public class UserDto implements Dto {
 	private String email;
 	private String firstName;
 	private String lastName;
+	private String username;
 	private String password;
 	private int userId;
 	private boolean rememberMe;
@@ -89,5 +90,13 @@ public class UserDto implements Dto {
 
 	public void setRememberMe(boolean rememberMe) {
 		this.rememberMe = rememberMe;
+	}
+
+	public String getUsername() {
+		return username;
+	}
+
+	public void setUsername(String username) {
+		this.username = username;
 	}
 }
