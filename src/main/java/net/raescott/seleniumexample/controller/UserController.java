@@ -15,7 +15,6 @@ import org.springframework.validation.FieldError;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.ResponseBody;
 
 @Controller
 @RequestMapping("user")
@@ -25,11 +24,11 @@ public class UserController {
 		return "login";
 	}
 
-	@RequestMapping(value = "logout", method = RequestMethod.POST)
-	public @ResponseBody Map<String, String> logout() {
+	@RequestMapping(value = "logout", method = RequestMethod.GET)
+	public String logout() {
 		Map<String, String> response = new TreeMap<String, String>();
 		response.put("status", "true");
-		return response;
+		return "redirect:/user";
 	}
 
 	@RequestMapping(value = "login", method = RequestMethod.POST)
