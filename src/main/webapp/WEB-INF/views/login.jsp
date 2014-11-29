@@ -37,16 +37,16 @@
 	<form name="login" action="<c:url value="/" />user/login" method="POST">
 		<%-- Indicate what failed for the user --%>
 		<%-- TODO: Add a decent error message for login failure --%>
-		<c:if test="${SPRING_SECURITY_LAST_EXCEPTION.message == 'Bad credentials'}">
+		<%--<c:if test="${SPRING_SECURITY_LAST_EXCEPTION.message == 'Bad credentials'}">--%>
 			<div class="yellow-message-login error">
-					${emailInvalid}
+					${usernameInvalid}
 					${passwordInvalid}
 					${fn:replace(SPRING_SECURITY_LAST_EXCEPTION.message, 'Bad credentials', 'Username/Password are incorrect. Please try again.')}
 			</div>
-		</c:if>
-		<input id="username" name="username" size="30" type="text" placeholder="Username" />
+		<%--</c:if>--%>
+		<input id="username" name="username" size="30" type="text" placeholder="Username" value="${userDto.username}" />
 		<br/>
-		<input id="password" name="password" type="password" size="30" placeholder="Password" />
+		<input id="password" name="password" type="password" size="30" placeholder="Password" value="${userDto.password}" />
 
 		<div class="buttonwrap" >
 			<input type="submit" value="Login"/>

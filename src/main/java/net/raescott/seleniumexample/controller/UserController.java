@@ -39,9 +39,9 @@ public class UserController {
 		checkUserDto.setUsername("myusername");
 		checkUserDto.setPassword("mypassword");
 
-		if (checkUserDto.getUsername() == null || checkUserDto.getUsername().equals("anonymousUser")) {
+		if (checkUserDto.getUsername() == null || checkUserDto.getUsername().equals("anonymousUser") || !checkUserDto.getUsername().equals(userDto.getUsername())) {
 			result.addError(new FieldError("userDto", "username", "That is not a valid username"));
-			model.addAttribute("emailInvalid", "That is not a valid email");
+			model.addAttribute("usernameInvalid", "That is not a valid username");
 		} else if (!checkUserDto.getPassword().equals(userDto.getPassword())) {
 			result.addError(new FieldError("userDto", "password", "Invalid password"));
 			model.addAttribute("passwordInvalid", "Invalid password");
@@ -52,8 +52,7 @@ public class UserController {
 
 		// In a real application, if all the validation passes, you might return all the user information by fetching
 		// from a database here.  For now I'll just set it to the contrived checkUserDto.
-		userDto = checkUserDto;
-		session.setAttribute("userDto", userDto);
+		//session.setAttribute("userDto", userDto);
 		return "redirect:/"; // TODO: Redirect to user information page instead of home?
 	}
 }
