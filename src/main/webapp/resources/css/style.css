@@ -68,3 +68,8 @@
 .pane2 {
 	background-color:#ffa0a0;
 }
+
+.logout {
+	float: right;
+	padding: 10px;
+}

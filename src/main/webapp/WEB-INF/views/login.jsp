@@ -49,7 +49,7 @@
 		<input id="password" name="password" type="password" size="30" placeholder="Password" value="${userDto.password}" />
 
 		<div class="buttonwrap" >
-			<input type="submit" value="Login"/>
+			<input id="loginSubmitButton" type="submit" value="Login"/>
 		</div>
 	</form>
 	</body>
