@@ -1,6 +1,6 @@
     <p>
         AJAX Message
-        <div id="ajaxGet">loading...</div>
+        <div id="ajaxGet" style="display: none" >loading...</div>
     </p>
 
     <%--<script src="//ajax.googleapis.com/ajax/libs/dojo/1.9.2/dojo/dojo.js" data-dojo-config="async: true" ></script> --%>
