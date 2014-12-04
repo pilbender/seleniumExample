@@ -1,4 +1,4 @@
-package net.raescott.seleniumexample;
+package net.raescott.seleniumexample.dto;
 
 /**
  * Simple Data Transfer Object.

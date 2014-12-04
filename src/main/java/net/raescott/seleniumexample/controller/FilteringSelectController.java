@@ -1,4 +1,7 @@
-package net.raescott.seleniumexample;
+package net.raescott.seleniumexample.controller;
+
+import net.raescott.seleniumexample.dto.CityDto;
+import net.raescott.seleniumexample.dto.StateDto;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;

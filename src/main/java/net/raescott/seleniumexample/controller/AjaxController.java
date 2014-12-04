@@ -1,4 +1,4 @@
-package net.raescott.seleniumexample;
+package net.raescott.seleniumexample.controller;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
